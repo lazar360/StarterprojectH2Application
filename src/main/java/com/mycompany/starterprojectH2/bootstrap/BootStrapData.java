@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 @Component
 public class BootStrapData implements CommandLineRunner {
@@ -18,18 +20,34 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Create Contact");
         createContact();
         updateContact();
+        listContacts();
+        getContact();
 
     }
 
     private void createContact(){
 
-        Contact newContact = new Contact();
-        newContact.setName("Peter Smith");
-        newContact.setEmail("peter.smith@mail.com");
-        newContact.setAddress("New York, USA");
-        newContact.setPhone("123456-2111");
+        Contact newContact1 = new Contact();
+        newContact1.setName("Peter Smith");
+        newContact1.setEmail("peter.smith@mail.com");
+        newContact1.setAddress("New York, USA");
+        newContact1.setPhone("123456-2111");
 
-        repo.save(newContact);
+        Contact newContact2 = new Contact();
+        newContact2.setName("John Do");
+        newContact2.setEmail("john.do@mail.com");
+        newContact2.setAddress("Paris, France");
+        newContact2.setPhone("00000000");
+
+        Contact newContact3 = new Contact();
+        newContact3.setName("Peter Jackson");
+        newContact3.setEmail("peter.jackson@mail.com");
+        newContact3.setAddress("Berlin, Germany");
+        newContact3.setPhone("123456-2111");
+
+        repo.save(newContact1);
+        repo.save(newContact2);
+        repo.save(newContact3);
         System.out.println("new contact was created");
     }
 
@@ -47,6 +65,16 @@ public class BootStrapData implements CommandLineRunner {
 
     }
 
+    private void listContacts() {
+        List<Contact> listContacts = repo.findAll();
+        listContacts.forEach(System.out::println);
+    }
 
+    private void getContact() {
+        Integer contactId = 1;
+        Contact contact = repo.findById(contactId);
+
+        System.out.println(contact);
+    }
 
 }
