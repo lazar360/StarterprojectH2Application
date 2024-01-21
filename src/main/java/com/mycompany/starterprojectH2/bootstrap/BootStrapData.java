@@ -22,6 +22,7 @@ public class BootStrapData implements CommandLineRunner {
         updateContact();
         listContacts();
         getContact();
+        getContactList();
 
     }
 
@@ -42,7 +43,7 @@ public class BootStrapData implements CommandLineRunner {
         Contact newContact3 = new Contact();
         newContact3.setName("Peter Jackson");
         newContact3.setEmail("peter.jackson@mail.com");
-        newContact3.setAddress("Berlin, Germany");
+        newContact3.setAddress("USA");
         newContact3.setPhone("123456-2111");
 
         repo.save(newContact1);
@@ -53,18 +54,18 @@ public class BootStrapData implements CommandLineRunner {
 
     private void updateContact() {
         Contact existContact = new Contact();
-
         existContact.setId(1);
         existContact.setName("Peter Smith");
         existContact.setEmail("peter.smith@gmail.com");
-        existContact.setAddress("New York, USA");
+        existContact.setAddress("USA");
         existContact.setPhone("123456-2111");
 
         Contact updatedContact = repo.update(existContact);
-        System.out.println("exist contact was updated");
+        /*System.out.println("exist contact was updated");
         System.out.println("findByEmail");
         Contact searchedContact = repo.findByEmail("peter.smith@gmail.com");
-        System.out.println("contact : " + searchedContact);
+        System.out.println("contact : " + searchedContact);*/
+
     }
 
     private void listContacts() {
@@ -78,5 +79,13 @@ public class BootStrapData implements CommandLineRunner {
 
         System.out.println(contact);
     }
+
+    private void getContactList(){
+        System.out.println("findAllByAddress");
+        List<String> contactList = repo.findAllByAddress("USA");
+        contactList.forEach(System.out::println);
+    }
+
+
 
 }

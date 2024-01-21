@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ContactRepository {
@@ -43,5 +44,18 @@ public class ContactRepository {
         return query.setParameter(1, email).getSingleResult();
 
     }
+
+    public List<String> findAllByAddress(String address){
+
+        TypedQuery<Contact> query = entityManager.createQuery(
+                "SELECT c FROM Contact c WHERE c.address = ?1", Contact.class);
+
+        List<Contact> contacts = query.setParameter(1, address).getResultList();
+
+        return contacts.stream()
+                .map(Contact::getName)
+                .collect(Collectors.toList());
+    }
+
 
 }
