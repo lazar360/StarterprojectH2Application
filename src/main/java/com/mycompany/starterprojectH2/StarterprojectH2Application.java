@@ -10,4 +10,6 @@ public class StarterprojectH2Application {
 		SpringApplication.run(StarterprojectH2Application.class, args);
 	}
 
+
+
 }
