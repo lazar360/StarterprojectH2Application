@@ -35,4 +35,13 @@ public class ContactRepository {
         return entityManager.find(Contact.class, id);
     }
 
+    public Contact findByEmail(String email){
+
+        TypedQuery<Contact> query = entityManager.createQuery(
+                "SELECT c FROM Contact c WHERE c.email = ?1", Contact.class);
+
+        return query.setParameter(1, email).getSingleResult();
+
+    }
+
 }

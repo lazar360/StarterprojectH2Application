@@ -62,7 +62,9 @@ public class BootStrapData implements CommandLineRunner {
 
         Contact updatedContact = repo.update(existContact);
         System.out.println("exist contact was updated");
-
+        System.out.println("findByEmail");
+        Contact searchedContact = repo.findByEmail("peter.smith@gmail.com");
+        System.out.println("contact : " + searchedContact);
     }
 
     private void listContacts() {
