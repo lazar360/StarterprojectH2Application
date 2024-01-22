@@ -2,6 +2,7 @@ package com.mycompany.starterprojectH2.repositories;
 
 import com.mycompany.starterprojectH2.entity.Contact;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +51,18 @@ public class ContactRepository {
         TypedQuery<Contact> query = entityManager.createQuery(
                 "SELECT c FROM Contact c WHERE c.address = ?1", Contact.class);
 
-        List<Contact> contacts = query.setParameter(1, address).getResultList();
-
-        return contacts.stream()
+        return  query.setParameter(1, address).getResultList().stream()
                 .map(Contact::getName)
                 .collect(Collectors.toList());
     }
 
+   /* public List findAllByAddress(String address){
 
+        Query q = entityManager.createNativeQuery("SELECT c.id, c.address, c.email, c.phone, c.name FROM Contact c WHERE c.address = ?1", Contact.class);
+
+        List contacts = ((Query) q).setParameter(1, address).getResultList();
+
+        return contacts;
+
+    }*/
 }

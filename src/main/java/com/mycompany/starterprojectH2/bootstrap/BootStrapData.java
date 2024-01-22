@@ -82,7 +82,7 @@ public class BootStrapData implements CommandLineRunner {
 
     private void getContactList(){
         System.out.println("findAllByAddress");
-        List<String> contactList = repo.findAllByAddress("USA");
+        List contactList = repo.findAllByAddress("USA");
         contactList.forEach(System.out::println);
     }
 
