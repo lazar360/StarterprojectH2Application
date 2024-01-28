@@ -46,7 +46,7 @@ public class ContactRepository {
 
     }
 
-    public List<String> findAllByAddress(String address){
+    /*public List<String> findAllByAddress(String address){
 
         TypedQuery<Contact> query = entityManager.createQuery(
                 "SELECT c FROM Contact c WHERE c.address = ?1", Contact.class);
@@ -54,15 +54,16 @@ public class ContactRepository {
         return  query.setParameter(1, address).getResultList().stream()
                 .map(Contact::getName)
                 .collect(Collectors.toList());
-    }
+    }*/
 
-   /* public List findAllByAddress(String address){
+    public List findAllByAddress(String address){
 
-        Query q = entityManager.createNativeQuery("SELECT c.id, c.address, c.email, c.phone, c.name FROM Contact c WHERE c.address = ?1", Contact.class);
+        Query q = entityManager
+                .createNativeQuery("SELECT c.id, c.address, c.email, c.phone, c.name FROM Contact c WHERE c.address = ?1", Contact.class);
+
 
         List contacts = ((Query) q).setParameter(1, address).getResultList();
 
         return contacts;
-
-    }*/
+    }
 }
