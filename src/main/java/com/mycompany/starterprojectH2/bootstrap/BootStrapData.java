@@ -1,11 +1,15 @@
 package com.mycompany.starterprojectH2.bootstrap;
 
 import com.mycompany.starterprojectH2.entity.Contact;
+import com.mycompany.starterprojectH2.entity.Vehicule;
 import com.mycompany.starterprojectH2.repositories.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -19,9 +23,23 @@ public class BootStrapData implements CommandLineRunner {
 
         System.out.println("Create Contact");
         createContact();
+        createVehicle();
         updateContact();
         listContacts();
         getContact();
+
+    }
+
+    private void createVehicle() {
+
+        Vehicule vehicule1 = new Vehicule(
+                "fsezzsde",
+                "zfezzec",
+                "75EH334",
+                LocalDate.of(2023, Month.JANUARY, 1),
+                List.of("Vidange")
+        );
+        System.out.println("vehicule1 : " + vehicule1);
 
     }
 
